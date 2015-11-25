@@ -1,6 +1,9 @@
-from console_wrappers import ask_create_contacts, ask_find_contact, ask_delete_contact, ask_update_contact
-from pickle_model import save_contacts
+import functools
 
+from console_wrappers import ask_create_contacts, ask_find_contact, ask_delete_contact, ask_update_contact
+from pickle_model import Contacts
+
+contacts = Contacts()
 
 controller = {
     'c': ask_create_contacts,
@@ -8,6 +11,8 @@ controller = {
     'd': ask_delete_contact,
     'u': ask_update_contact,
 }
+
+controller = {key: functools.partial(value, contacts) for key, value in controller.items()}
 
 
 def default():
@@ -21,4 +26,4 @@ if __name__ == '__main__':
                 break
             controller.get(action.lower(), default)()
     finally:
-        save_contacts()
+        contacts.save_contacts()
