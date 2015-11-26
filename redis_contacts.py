@@ -5,7 +5,6 @@ from abstract_contacts import AbstractModel
 
 
 class RedisContacts(AbstractModel):
-    NOT_EXIST_MESSAGE = "Name doesn't exist"
 
     rc = redis.StrictRedis()
 

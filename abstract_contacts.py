@@ -4,6 +4,7 @@ import abc
 
 class AbstractModel(object):
     __metaclass__ = abc.ABCMeta
+    NOT_EXIST_MESSAGE = "Name doesn't exist"
 
     @abc.abstractmethod
     def load_contacts(self):

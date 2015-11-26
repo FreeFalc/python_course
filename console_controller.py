@@ -4,8 +4,13 @@ from console_wrappers import ask_create_contacts, ask_find_contact, ask_delete_c
 import settings
 if settings.DATABASE == "Pickle":
     from pickle_contacts import PickleContacts as Contacts
-else:
+elif settings.DATABASE == "Redis":
     from redis_contacts import RedisContacts as Contacts
+elif settings.DATABASE == "MySQL":
+    from mysql_contacts import MysqlContacts as Contacts
+else:
+    print "Invalid database"
+    exit()
 
 if settings.READER == 'Console':
     from console_reader import ConsoleReader as DefaultReader
