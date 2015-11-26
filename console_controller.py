@@ -1,27 +1,7 @@
 import functools
 
-import settings
 from console_wrappers import ask_create_contacts, ask_find_contact, ask_delete_contact, ask_update_contact
-
-if settings.DATABASE == "Pickle":
-    from contacts.pickle_contacts import PickleContacts as Contacts
-elif settings.DATABASE == "Redis":
-    from contacts.redis_contacts import RedisContacts as Contacts
-elif settings.DATABASE == "MySQL":
-    from contacts.mysql_contacts import MysqlContacts as Contacts
-elif settings.DATABASE == "SQLAlchemy":
-    from contacts.sqlalchemy_contacts import SQLAlchemyContacts as Contacts
-else:
-    print "Invalid database"
-    exit()
-
-if settings.READER == 'Console':
-    from reader.console_reader import ConsoleReader as DefaultReader
-else:
-    from reader.file_reader import FileReader as DefaultReader
-
-contacts = Contacts()
-reader = DefaultReader()
+from configurer import contacts, reader
 
 controller = {
     'c': ask_create_contacts,
