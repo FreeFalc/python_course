@@ -1,5 +1,5 @@
 # coding=utf-8
 
-READER = "Console" # "File" # "Console"
+READER = "File" # "Console"
 
 DATABASE = "MySQL" #"Redis" # "Pickle"
