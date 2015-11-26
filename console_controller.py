@@ -1,8 +1,12 @@
 import functools
 
 from console_wrappers import ask_create_contacts, ask_find_contact, ask_delete_contact, ask_update_contact
-from pickle_model import Contacts
 import settings
+if settings.DATABASE == "Pickle":
+    from pickle_contacts import PickleContacts as Contacts
+else:
+    from redis_contacts import RedisContacts as Contacts
+
 if settings.READER == 'Console':
     from console_reader import ConsoleReader as DefaultReader
 else:
