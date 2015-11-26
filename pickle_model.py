@@ -1,48 +1,50 @@
 import pickle
 
-FILENAME = 'contacts.dat'
-
-
-def load_contacts():
-    try:
-        with open(FILENAME, 'r') as f:
-            return pickle.load(f)
-    except IOError, EOFError:
-        return {}
-        
-
-def save_contacts():
-    with open(FILENAME, 'w') as f:
-        pickle.dump(contacts, f)
-
-
-def create_contact(name, phone):
-    if name in contacts:
-        raise ValueError("Name exists")
-    contacts[name] = phone
-    
-
 def key_exists(f):
-    def wrapper(name, *args):
-        if name not in contacts:
+    def wrapper(self, name, *args):
+        if name not in self.contacts:
             raise ValueError("Name doesn't exist")
-        return f(name, *args)
+        return f(self, name, *args)
     return wrapper
-    
-
-@key_exists
-def find_contact(name):
-    return contacts[name]
-    
-
-@key_exists
-def delete_contact(name):
-    del contacts[name]
-    
-
-@key_exists
-def update_contact(name, phone):
-    contacts[name] = phone
 
 
-contacts = load_contacts()
+class Contacts(object):
+    FILENAME = 'contacts.dat'
+
+    def __init__(self):
+        self.contacts = self.load_contacts()
+
+    def load_contacts(self):
+        try:
+            with open(self.FILENAME, 'r') as f:
+                return pickle.load(f)
+        except IOError, EOFError:
+            return {}
+
+
+    def save_contacts(self):
+        with open(self.FILENAME, 'w') as f:
+            pickle.dump(self.contacts, f)
+
+
+    def create_contact(self, name, phone):
+        if name in self.contacts:
+            raise ValueError("Name exists")
+        self.contacts[name] = phone
+
+
+    @key_exists
+    def find_contact(self, name):
+        return self.contacts[name]
+
+
+    @key_exists
+    def delete_contact(self, name):
+        del self.contacts[name]
+
+
+    @key_exists
+    def update_contact(self, name, phone):
+        self.contacts[name] = phone
+
+

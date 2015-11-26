@@ -1,4 +1,4 @@
-from pickle_model import create_contact, find_contact, delete_contact, update_contact
+
 
 def ask_name():
     return raw_input('name?')
@@ -6,33 +6,33 @@ def ask_name():
 def ask_phone():
     return raw_input('phone?')
         
-def ask_create_contacts():
+def ask_create_contacts(f_contacts):
     name = ask_name()
     phone = ask_phone()
     try:
-         create_contact(name, phone)
+         f_contacts.create_contact(name, phone)
     except ValueError as e:
          print e
 
-def ask_find_contact():
-    name = name = ask_name()
-    try:
-        print name, find_contact(name)
-    except ValueError as e:
-        print e
-        
-def ask_delete_contact():
+def ask_find_contact(f_contacts):
     name = ask_name()
     try:
-        delete_contact(name)
+        print name, f_contacts.find_contact(name)
     except ValueError as e:
         print e
         
-def ask_update_contact():
+def ask_delete_contact(f_contacts):
+    name = ask_name()
+    try:
+        f_contacts.delete_contact(name)
+    except ValueError as e:
+        print e
+        
+def ask_update_contact(f_contacts):
     name = ask_name()
     phone = ask_phone()
     try:
-        update_contact(name, phone)
+        f_contacts.update_contact(name, phone)
     except ValueError as e:
         print e
 
