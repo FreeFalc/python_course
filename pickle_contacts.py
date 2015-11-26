@@ -1,5 +1,7 @@
 import pickle
 
+from abstract_contacts import AbstractModel
+
 
 def key_exists(f):
     def wrapper(self, name, *args):
@@ -8,7 +10,8 @@ def key_exists(f):
         return f(self, name, *args)
     return wrapper
 
-class Contacts(object):
+
+class PickleContacts(AbstractModel):
     FILENAME = 'contacts.dat'
 
     def __init__(self):
