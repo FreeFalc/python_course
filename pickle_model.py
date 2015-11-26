@@ -1,12 +1,12 @@
 import pickle
 
+
 def key_exists(f):
     def wrapper(self, name, *args):
         if name not in self.contacts:
             raise ValueError("Name doesn't exist")
         return f(self, name, *args)
     return wrapper
-
 
 class Contacts(object):
     FILENAME = 'contacts.dat'
@@ -18,20 +18,17 @@ class Contacts(object):
         try:
             with open(self.FILENAME, 'r') as f:
                 return pickle.load(f)
-        except IOError, EOFError:
+        except (IOError, EOFError):
             return {}
-
 
     def save_contacts(self):
         with open(self.FILENAME, 'w') as f:
             pickle.dump(self.contacts, f)
 
-
     def create_contact(self, name, phone):
         if name in self.contacts:
             raise ValueError("Name exists")
         self.contacts[name] = phone
-
 
     @key_exists
     def find_contact(self, name):
@@ -46,5 +43,3 @@ class Contacts(object):
     @key_exists
     def update_contact(self, name, phone):
         self.contacts[name] = phone
-
-
