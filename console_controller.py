@@ -9,6 +9,8 @@ elif settings.DATABASE == "Redis":
     from contacts.redis_contacts import RedisContacts as Contacts
 elif settings.DATABASE == "MySQL":
     from contacts.mysql_contacts import MysqlContacts as Contacts
+elif settings.DATABASE == "SQLAlchemy":
+    from contacts.sqlalchemy_contacts import SQLAlchemyContacts as Contacts
 else:
     print "Invalid database"
     exit()

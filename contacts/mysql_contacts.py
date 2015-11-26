@@ -23,7 +23,8 @@ class MysqlContacts(AbstractModel):
         self.cursor.execute("commit")
 
     def save_contacts(self):
-        pass
+        self.cursor.close()
+        self.db.close()
 
     def update_contact(self, name, phone):
         if not self.cursor.execute("update contacts set phone='{}' where name='{}'".format(phone, name)):
