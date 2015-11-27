@@ -6,22 +6,28 @@
     <link rel="stylesheet" href="static/main.css">
 </head>
 <body>
+    {%block errors%}
+    {% if message %}<h2 class="error">{{message}}</h2>{%endif%}
+    {%endblock%}
     {% block content %}
     <h1>Phone Book</h1>
     <table>
+        <form id="form" action="/delete" method="post">
         {% for contact in contacts %}
         <tr>
+            <td><input type="radio" value="{{contact.0}}" name="name"></td>
             <td>{{contact.0}}</td>
             <td>{{contact.1}}</td>
         </tr>
         {% endfor %}
+        </form>
     </table>
     {% endblock %}
     <ul>
         <li><a href="/">Main page</a></li>
         <li><a href="/add">Add contact</a></li>
         <li><a href="/find">Find contact</a></li>
-        <li><a href="/delete">Delete contact</a></li>
+        <li><a href="/delete" onclick="document.getElementById('form').submit(); return false">Delete contact</a></li>
         <li><a href="/update">Update contact</a></li>
     </ul>
 {%block footer%}

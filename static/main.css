@@ -1,3 +1,9 @@
-h1 {
+h1, .error {
     color:red
+}
+
+table, td {
+    border-style: solid;
+    border-color: #424242;
+    border-width: 1px
 }
