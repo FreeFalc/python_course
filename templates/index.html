@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Book</title>
+    <link rel="stylesheet" href="static/main.css">
+</head>
+<body>
+    {% block content %}
+    <h1>Phone Book</h1>
+    <table>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{contact.0}}</td>
+            <td>{{contact.1}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endblock %}
+    <ul>
+        <li><a href="/">Main page</a></li>
+        <li><a href="/add">Add contact</a></li>
+        <li><a href="/find">Find contact</a></li>
+        <li><a href="/delete">Delete contact</a></li>
+        <li><a href="/update">Update contact</a></li>
+    </ul>
+{%block footer%}
+{%endblock%}
+</body>
+</html>

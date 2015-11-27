@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block content %}
+    <h1>Find contact</h1>
+    {% if name %}
+    <h2>Found: {{name}} - {{phone}}</h2>
+    {% endif %}
+    <form>
+        <input type="text" name="search">
+        <input type="Submit" value="Find!">
+    </form>
+{% endblock %}
+{%block footer%}
+&copy; 2015
+{%endblock%}
