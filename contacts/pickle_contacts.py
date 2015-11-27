@@ -27,6 +27,7 @@ class PickleContacts(AbstractModel):
     def save_contacts(self):
         with open(self.FILENAME, 'w') as f:
             pickle.dump(self.contacts, f)
+        print "Contacts saved"
 
     def create_contact(self, name, phone):
         if name in self.contacts:
@@ -37,12 +38,13 @@ class PickleContacts(AbstractModel):
     def find_contact(self, name):
         return self.contacts[name]
 
-
     @key_exists
     def delete_contact(self, name):
         del self.contacts[name]
 
-
     @key_exists
     def update_contact(self, name, phone):
         self.contacts[name] = phone
+
+    def list_contacts(self):
+        return tuple(self.contacts.items())

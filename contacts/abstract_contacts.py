@@ -29,3 +29,7 @@ class AbstractModel(object):
     @abc.abstractmethod
     def update_contact(self, name, phone):
         pass
+
+    @abc.abstractmethod
+    def list_contacts(self):
+        pass

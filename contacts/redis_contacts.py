@@ -30,4 +30,11 @@ class RedisContacts(AbstractModel):
         self.rc.set(name, phone)
 
     def create_contact(self, name, phone):
+        if self.rc.exists(name):
+            raise ValueError("Name exists")
         self.rc.set(name, phone)
+
+    def list_contacts(self):
+        names = self.rc.keys("*")
+        contacts = [(name, self.rc.get(name)) for name in names]
+        return tuple(contacts)
