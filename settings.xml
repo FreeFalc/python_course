@@ -1,6 +1,6 @@
 <settings>
     <database>
-        MySQL
+        Redis
     </database>
     <reader>
         File
