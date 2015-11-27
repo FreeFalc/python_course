@@ -40,3 +40,8 @@ class SQLAlchemyContacts(AbstractModel):
         if not self.session.query(self.Contacts).filter_by(name=name).update({'phone': phone}):
             raise ValueError(self.NOT_EXIST_MESSAGE)
         self.session.commit()
+
+    def list_contacts(self):
+        return tuple(
+            [(c.name, c.phone) for c in self.session.query(self.Contacts).all()]
+        )

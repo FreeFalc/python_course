@@ -40,3 +40,9 @@ class MysqlContacts(AbstractModel):
             raise ValueError("Name exists")
         self.cursor.execute("insert into contacts (name, phone) values ('{}', '{}')".format(name, phone))
         self.cursor.execute("commit")
+
+    def list_contacts(self):
+        self.cursor.execute("select name, phone from contacts")
+        return tuple(
+            [(row[0], row[1]) for row in self.cursor.fetchall()]
+        )
