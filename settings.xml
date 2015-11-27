@@ -1,0 +1,8 @@
+<settings>
+    <database>
+        MySQL
+    </database>
+    <reader>
+        File
+    </reader>
+</settings>
